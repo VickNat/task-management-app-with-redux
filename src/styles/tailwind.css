@@ -1,0 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.btn {
+  @apply text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 px-4 rounded-md cursor-pointer;
+}
+
+.input {
+  @apply mx-3 px-4 text-gray-900 bg-gray-100 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-md;
+}
