@@ -38,7 +38,7 @@ const SingleTask: React.FC<Props> = ({ taskId }) => {
 
   return (
     <form>
-      <div className='flex my-2 shadow-md py-2 px-4'>
+      <div className='flex my-2 shadow-md py-2 px-4 bg-gray-200'>
       <div className='flex-auto'>
       {
         edit ? (
