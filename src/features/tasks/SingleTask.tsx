@@ -18,10 +18,11 @@ const SingleTask: React.FC<Props> = ({ taskId }) => {
   const task = tasks.find(task => task.id === taskId)
   const [edittedTask, setEdittedTask] = useState(task?.task)
 
+  console.log(task?.task);
+
   const editHandler = () => {
     if (edittedTask) {
       dispatch(editTask(taskId, edittedTask))
-      console.log(tasks);
     }
 
     setEdit(!edit)
@@ -38,67 +39,71 @@ const SingleTask: React.FC<Props> = ({ taskId }) => {
 
   return (
     <form>
-      <div className='flex my-2 shadow-md py-2 px-4 bg-gray-200'>
-      <div className='flex-auto'>
-      {
-        edit ? (
-          <>
-            <input
-              name='editInput'
-              id='editInput'
-              value={edittedTask}
-              onChange={(e) => setEdittedTask(e.target.value)}
-            />
+      <div className='flex my-2 shadow-sm py-2 px-4 bg-gray-200'>
+        <div className='flex-auto'>
+          {
+            edit ? (
+              <>
+                <input
+                  name='editInput'
+                  id='editInput'
+                  value={edittedTask}
+                  onChange={(e) => setEdittedTask(e.target.value)}
+                />
 
-            <button className='btn' type='button' onClick={editHandler}>Done</button>
-          </>
-        ) : (
-          task?.completed ? (
-            <s className='text-gray-700'>{task.task}</s>
-          ) : (
-            <span className='text-black'>{task?.task}</span>
-          )
-        )
-      }
-      </div>
+                <button className='btn' type='button' onClick={editHandler}>Done</button>
+              </>
+            ) : (
+              task?.completed ? (
+                <span className='text-gray-700 line-through taskSpan'>{task.task}</span>
+              ) : (
+                <span className='text-black taskSpan'>{task?.task}</span>
+              )
+            )
+          }
+        </div>
 
-      <div className='flex-auto'>
-        {
-          !del ? (
-            <>
-              <button
-                type='button'
-                onClick={doneHandler}
-                className='btn mx-3'
-              >
-                Done
-              </button>
-              <button
-               type='button' 
-               onClick={
-                () => {
-                  if (edit == false) {
-                    setEdit(!edit)
+        <div className='flex-auto'>
+          {
+            !del ? (
+              <>
+                <button
+                  type='button'
+                  onClick={doneHandler}
+                  className='btn mx-3'
+                  id='doneButton'
+                  data-testid="doneTask"
+                >
+                  Done
+                </button>
+                <button
+                  type='button'
+                  onClick={
+                    () => {
+                      if (edit == false) {
+                        setEdit(!edit)
+                      }
+                    }
                   }
-                }
-              }
-              className='btn mr-3'
-              >
-                Edit
-              </button>
-              <button
-                type='button'
-                onClick={deleteHandler}
-                className='px-4 rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500'
-              >
-                Delete
-              </button>
-            </>
-          ) : (
-            <></>
-          )
-        }
-      </div>
+                  className='btn mr-3'
+                >
+                  Edit
+                </button>
+                <button
+                data-testid="delete"
+                  id='deleteButton'
+                  type='button'
+                  onClick={deleteHandler}
+                  className='px-4 rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500'
+                >
+                  Delete
+                </button>
+              </>
+            ) : (
+              <></>
+            )
+          }
+        </div>
       </div>
     </form>
   )

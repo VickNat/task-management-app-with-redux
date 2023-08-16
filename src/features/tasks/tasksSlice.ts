@@ -10,16 +10,7 @@ interface Task {
 }
 
 const initialState: Task[] = [
-  {
-    id: '1',
-    task: 'Finish redux article',
-    completed: false
-  },
-  {
-    id: '2',
-    task: 'Finish redux article 2',
-    completed: false
-  }
+  
 ]
 
 const tasksSlice = createSlice({

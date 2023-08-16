@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import { useAppDispatch } from '../../app/hooks'
 import { addTask } from './tasksSlice'
 
-const AddTaskForm: React.FC = () => {
+interface Props {
+  handleAdd: () => void
+}
+
+const AddTaskForm: React.FC<Props> = ({ handleAdd }) => {
 
   const [task, setTask] = useState("")
 
@@ -12,6 +16,7 @@ const AddTaskForm: React.FC = () => {
    * Dispatch the action to the store
    */
   const handleAddTask = () => {
+    handleAdd()
     if (task) {
       dispatch(addTask(task))
     }
@@ -27,6 +32,7 @@ const AddTaskForm: React.FC = () => {
         <input
           name='addTask'
           id='addTask'
+          data-testid='addTask'
           className="input"
           value={task}
           onChange={(e) => setTask(e.target.value)}
@@ -34,6 +40,8 @@ const AddTaskForm: React.FC = () => {
         />
         <button
           className="btn"
+          id='addTaskButton'
+          data-testid='addTaskButton'
           type="button"
           onClick={handleAddTask}
           disabled={!canAdd}

@@ -33,7 +33,7 @@ const TasksList: React.FC = () => {
    * Render taskstodisplay
    */
   const renderedTasks = tasksToDisplay.map((task) => (
-    <li key={task.id}>
+    <li key={task.id} className='taskItem'>
       <SingleTask taskId={task.id} />
     </li>
   ))
@@ -43,22 +43,25 @@ const TasksList: React.FC = () => {
     <div>
       <div className='mb-4 w-full flex justify-center'>
         <button
+          id='allTasksButton'
           className='btn'
           type='button'
           onClick={(e) => (displayHandler(e, "button1"))}
         >All tasks</button>
         <button
+          id='completeTasksButton'
           className='btn ml-3'
           type='button'
           onClick={(e) => (displayHandler(e, "button2"))}
         >Completed</button>
         <button
+          id='incompleteTasksButton'
           className='btn ml-3'
           type='button'
           onClick={(e) => (displayHandler(e, "button3"))}
         >Incomplete</button>
       </div>
-      <ul className='flex flex-col items-start '>
+      <ul className='flex flex-col items-start ' id='taskList'>
         {renderedTasks}
       </ul>
     </div>
